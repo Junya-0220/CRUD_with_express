@@ -3,6 +3,10 @@
 const usersModule = (() => {
     const BASE_URL = "http://localhost:3000/api/v1/users"
 
+    //ヘッダーの設定
+    const headers = new Headers()
+    headers.set("Content-Type", "application/json")
+
     return {
         fetchAllUsers: async () => {
             const res = await fetch(BASE_URL)
@@ -20,6 +24,28 @@ const usersModule = (() => {
                             </tr>`
                             document.getElementById('users-list').insertAdjacentHTML('beforeend', body)
             }
+        },
+        createUsers: async () => {
+            const name = document.getElementById("name").value
+            const profile = document.getElementById("profile").value
+            const dateOfbirth = document.getElementById("date-of-birth").value
+
+            const body = {
+                name: name,
+                profile: profile,
+                date_of_birth: dateOfbirth
+            }
+
+            const res = await fetch(BASE_URL, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(body)
+            })
+
+            const resJson = await res.json()
+
+            alert(resJson.message)
+            window.location.href ="/"
         }
     }
 })()
