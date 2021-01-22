@@ -185,3 +185,24 @@ UPDATE users SET name="${name}", profile="${profile}" WHERE id="${id}"
 DELERE FROM users WHERE id=${id}
 
 ```
+
+## fetchメソッドに渡すパラメータ
+
+```JavaScript
+//ヘッダーの設定
+const headers = new Headers()
+headers.set("Content-type", "application/json")
+
+const body =  {
+    name: name,
+    profile: profile,
+    date_of_birth: dateOfBirth
+}
+
+const res = await fetch(BASE_URL, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(body)
+})
+//オブジェクトをJSON文字列に変換
+```
