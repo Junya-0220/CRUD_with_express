@@ -10,23 +10,23 @@ git push -u origin main
 
 ```
 
-# API実践入門
+## API実践入門
 
 ## 実践編の前提
 
 * SNSのシンプルなAPIを設計・開発します
 * RESTfulなAPIにします
 
-- GET
-- POST
-- PUT
-- DELETE
+ GET
+ POST
+ PUT
+ DELETE
 
 ・使用する技術は以下のとおり
 
-- バックエンド言語: Node.js
-- Webサーバー: Express
-- データベース: sqlite3
+ バックエンド言語: Node.js
+ Webサーバー: Express
+ データベース: sqlite3
   
 ### なぜユーザーを扱うのか？
 
@@ -62,7 +62,6 @@ git push -u origin main
 6. イベントの標準的なコース設計をする
 7. エラーを想定する
 
-
 ### SNSのデータの特定とリソース設計
 
 ・ユーザー情報
@@ -72,14 +71,14 @@ git push -u origin main
 フォロワーID、フォローID
 
 今回対象とするリソース
+
 1. ユーザーリソース
 2. 検索結果リソース
 
 ### URI設計
 
-- /users: ユーザーリソースのURI
-- /search: 検索結果リソースのURI(?qはクエリパラメータ)
-
+ /users: ユーザーリソースのURI
+ /search: 検索結果リソースのURI(?qはクエリパラメータ)
 
 | メソッド | URI | 詳細 |
 | :---: | :---: | :---: |
@@ -147,7 +146,6 @@ app.use(express.static(path.join(__dirname,'public')));
 
 1. path:パス指定用モジュール
 2. express.static(): 静的ファイルのルーティングディレクトリを設定
-   
 
 ## リクエストのbodyを読み取る設定
 
@@ -178,3 +176,12 @@ const run = async (sql) => {
 
 ```
 
+## 書き込み用SQLクエリの基本
+
+```bash
+
+INSERT INTO users (name, profile) VALUES ("${name}","${profile}")
+UPDATE users SET name="${name}", profile="${profile}" WHERE id="${id}"
+DELERE FROM users WHERE id=${id}
+
+```
